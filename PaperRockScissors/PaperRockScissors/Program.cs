@@ -22,11 +22,49 @@ namespace PaperRockScissors
             Console.WriteLine("(3) - Scissors");
             Console.WriteLine("Make a choice : ");
 
-            int userInput = int.Parse(Console.ReadLine());
+            string userInput = Console.ReadLine();
             var computerInput = (Choice)rndChoice.Next(1, 4);
 
-            Console.WriteLine($"Your choice : {(Choice)userInput}");
-            Console.WriteLine($"Computer choice : {computerInput}");
+            bool check = false;
+            
+
+            //  WYJĄKI
+            try
+            {
+                int user = int.Parse(userInput);
+            }
+            catch (FormatException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Your choice is not an integer!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Choose the one of the option from the menu above.");
+                Console.ForegroundColor = ConsoleColor.White;
+                check = true;
+            }
+            catch (OverflowException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Your argument is out of range.");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Choose the one of the option from the menu above.");
+                Console.ForegroundColor = ConsoleColor.White;
+                check = true;
+            }
+            
+            if(check == true)
+            {
+                Console.WriteLine("Try again.");
+            }
+            else
+            {
+                Console.WriteLine($"Your choice : {(Choice)int.Parse(userInput)}");
+                Console.WriteLine($"Computer choice : {computerInput}");
+            }            
+
+
         }
     }
 }
