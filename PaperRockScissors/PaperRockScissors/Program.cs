@@ -20,11 +20,12 @@ namespace PaperRockScissors
             int computerScore = 0;
 
             bool winner = false;
+            bool check = false;
 
-            do
+            while (check == false)
             {
-
-            
+                do
+            {           
             Console.WriteLine("This is \"Rock, paper, scissors \" game.");
             Console.WriteLine("(1) - Paper");
             Console.WriteLine("(2) - Rock");
@@ -33,12 +34,7 @@ namespace PaperRockScissors
 
             string userInput = Console.ReadLine();
             var computerInput = (Choice)rndChoice.Next(1, 4);
-
             
-
-            bool check = false;
-            
-
             //  WYJĄTKI
             try
             {
@@ -47,25 +43,25 @@ namespace PaperRockScissors
             catch (FormatException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Your choice is not an integer!");
+                Console.WriteLine("Wrong answer. Please enter one of the number's from the menu above.");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Choose the one of the option from the menu above.");
                 Console.ForegroundColor = ConsoleColor.White;
-                check = true;
+                    continue;               
             }
             catch (OverflowException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Your argument is out of range.");
+                Console.WriteLine("your argument is out of range.");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Choose the one of the option from the menu above.");
+                Console.WriteLine("choose the one of the option from the menu above.");
                 Console.ForegroundColor = ConsoleColor.White;
-                check = true;
+                    continue;                
             }
 
-            if(int.Parse(userInput) > 3)
+                if (int.Parse(userInput) > 3)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Your argument is out of range.");
@@ -73,9 +69,9 @@ namespace PaperRockScissors
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Choose the one of the option from the menu above.");
                 Console.ForegroundColor = ConsoleColor.White;
-                check = true;
+                    continue;                
             }
-            
+            /*
             if(check == true)
             {
                 Console.WriteLine("Try again.");
@@ -84,8 +80,8 @@ namespace PaperRockScissors
             {
                 Console.WriteLine($"Your choice : {(Choice)int.Parse(userInput)}");
                 Console.WriteLine($"Computer choice : {computerInput}");
-            }          
-            
+            }        
+            */            
             if(int.Parse(userInput) == 1 && computerInput == Choice.Rock || int.Parse(userInput) == 2 && computerInput == Choice.Scissors || int.Parse(userInput) == 3 && computerInput == Choice.Paper)
             {
                 userScore++;
@@ -115,6 +111,22 @@ namespace PaperRockScissors
                 }
 
             } while (!winner);
+            
+            char response;
+                
+                Console.WriteLine("Do you wanna play again? (Y)es || (N)o");
+                response = Convert.ToChar(Console.ReadLine().ToUpper());
+
+                if (response == 'Y')
+                {
+                    Console.Clear();
+                    check = false;
+                }
+                else if (response == 'N')
+                {
+                    check = true;
+                }
+            }
         }
     }
 }
