@@ -1,19 +1,67 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PaperRockScissors
 {
     class Program
     {
+        /*
         enum Choice
         {
             Paper = 1,
             Rock = 2,
             Scissors = 3
         }
-
-
+        */
+       
         static void Main(string[] args)
         {
+            Game gra = new Game();
+
+            bool check = false;
+            do
+            {
+                gra.Play();
+                if (gra.winner == true)
+                {
+                    Console.WriteLine("Do you wanna play again? (Y)es || (N)o");
+                    string response = Console.ReadLine().ToUpper();
+
+                    while(check == false)
+                    {
+                        if (response != "Y" && response != "N")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("You entered invalid input. Please choose \"Y\" for Yes or \"N\" for No.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            response = Console.ReadLine().ToUpper();
+                            check = false;
+                        }
+                        else
+                        {
+                            check = true;
+                        }
+                    }
+
+                    if (response == "Y")
+                    {
+                        gra.winner = false;
+                        Console.Clear();
+                        gra.userScore = 0;
+                        gra.computerScore = 0;
+                        check = false;
+                    }
+                    else if (response == "N")
+                    {
+                        break;
+                    }                    
+                }
+            } while (!gra.winner);
+
+
+            /*
             Random rndChoice = new Random();
 
             int userScore = 0;
@@ -22,8 +70,7 @@ namespace PaperRockScissors
             bool winner = false;
             bool check = false;
 
-            while (check == false)
-            {
+            
                 do
             {           
             Console.WriteLine("This is \"Rock, paper, scissors \" game.");
@@ -71,6 +118,7 @@ namespace PaperRockScissors
                 Console.ForegroundColor = ConsoleColor.White;
                     continue;                
             }
+            */
             /*
             if(check == true)
             {
@@ -81,7 +129,8 @@ namespace PaperRockScissors
                 Console.WriteLine($"Your choice : {(Choice)int.Parse(userInput)}");
                 Console.WriteLine($"Computer choice : {computerInput}");
             }        
-            */            
+            */
+            /*
             if(int.Parse(userInput) == 1 && computerInput == Choice.Rock || int.Parse(userInput) == 2 && computerInput == Choice.Scissors || int.Parse(userInput) == 3 && computerInput == Choice.Paper)
             {
                 userScore++;
@@ -100,33 +149,35 @@ namespace PaperRockScissors
             {
                 Console.WriteLine("It's a draw. Go on, try again.");
             }
-
-            if(userScore == 3)
-                {
-                    winner = true;
-                }
-            else if(computerScore == 3)
-                {
-                    winner = true;
-                }
-
-            } while (!winner);
             
+           if (userScore == 3)
+           {
+               winner = true;
+           }
+             
+           else if(computerScore == 3)
+           {
+               winner = true;
+           }
+           
+           } while (!winner);
+           */
+            /*
             char response;
-                
-                Console.WriteLine("Do you wanna play again? (Y)es || (N)o");
-                response = Convert.ToChar(Console.ReadLine().ToUpper());
 
-                if (response == 'Y')
-                {
-                    Console.Clear();
-                    check = false;
-                }
-                else if (response == 'N')
-                {
-                    check = true;
-                }
+            Console.WriteLine("Do you wanna play again? (Y)es || (N)o");
+            response = Convert.ToChar(Console.ReadLine().ToUpper());
+
+            if (response == 'Y')
+            {
+                Console.Clear();
+                check = true;
             }
+            else if (response == 'N')
+            {
+                check = false;
+            }
+            */
         }
     }
 }
