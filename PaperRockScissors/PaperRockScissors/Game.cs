@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace PaperRockScissors
-{
+{   
+    
     class Game
     {
         enum Choice
@@ -25,7 +26,7 @@ namespace PaperRockScissors
         }
         public void Screen()
         {
-            Console.WriteLine("This is \"Rock, paper, scissors \" game.");
+            Console.WriteLine("This is \"Rock, paper, scissors \" game. Let's play!");
             Console.WriteLine("(1) - Paper");
             Console.WriteLine("(2) - Rock");
             Console.WriteLine("(3) - Scissors");
@@ -34,6 +35,12 @@ namespace PaperRockScissors
 
         public void GameLogic()
         {
+
+            List<string> message = new List<string>();
+            message.Add("User Wins!");
+            message.Add("Computer Wins!");
+            message.Add("It's a draw. Go on, try again.");
+
             Random rndChoice = new Random();
 
             do
@@ -82,6 +89,7 @@ namespace PaperRockScissors
                     userScore++;
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("{0} beats {1}. User get's point.", (Choice)int.Parse(userInput), computerInput);
+                    Console.WriteLine(message[0]);                    
                     Console.WriteLine($"User score: {userScore}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Computer score: {computerScore}");
@@ -96,6 +104,7 @@ namespace PaperRockScissors
                     computerScore++;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("{0} beats {1}. Computer get's point.", computerInput, (Choice)int.Parse(userInput));
+                    Console.WriteLine(message[1]);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"User score: {userScore}");
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -110,7 +119,7 @@ namespace PaperRockScissors
                 else if (int.Parse(userInput) == 1 && computerInput == Choice.Paper || int.Parse(userInput) == 2 && computerInput == Choice.Rock || int.Parse(userInput) == 3 && computerInput == Choice.Scissors)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("It's a draw. Go on, try again.");
+                    Console.WriteLine(message[2]);
                     Console.WriteLine($"User score: {userScore}");
                     Console.WriteLine($"Computer score: {computerScore}");
                     Console.ForegroundColor = ConsoleColor.White;
