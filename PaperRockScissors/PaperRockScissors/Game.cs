@@ -30,16 +30,18 @@ namespace PaperRockScissors
             Console.WriteLine("(1) - Paper");
             Console.WriteLine("(2) - Rock");
             Console.WriteLine("(3) - Scissors");
-            Console.WriteLine("Make a choice : ");
+            Console.WriteLine("Make a choice (choose a number): ");
         }
 
         public void GameLogic()
         {
 
             List<string> message = new List<string>();
-            message.Add("User Wins!");
-            message.Add("Computer Wins!");
+            message.Add("User gets point!");
+            message.Add("Computer gets point!");
             message.Add("It's a draw. Go on, try again.");
+            message.Add("User wins the Game!");
+            message.Add("Computer wins the Game!");
 
             Random rndChoice = new Random();
 
@@ -87,34 +89,54 @@ namespace PaperRockScissors
                 if (int.Parse(userInput) == 1 && computerInput == Choice.Rock || int.Parse(userInput) == 2 && computerInput == Choice.Scissors || int.Parse(userInput) == 3 && computerInput == Choice.Paper)
                 {
                     userScore++;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("{0} beats {1}. User get's point.", (Choice)int.Parse(userInput), computerInput);
-                    Console.WriteLine(message[0]);                    
-                    Console.WriteLine($"User score: {userScore}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"Computer score: {computerScore}");
-                    Console.WriteLine(' ');
-                    Console.WriteLine("(1) - Paper");
-                    Console.WriteLine("(2) - Rock");
-                    Console.WriteLine("(3) - Scissors");
-                    Console.WriteLine("Make a selection: ");
+                    if (userScore == 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("{0} beats {1}. User scores the last point.", (Choice)int.Parse(userInput), computerInput);
+                        Console.WriteLine(message[3]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {                       
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("{0} beats {1}. ", (Choice)int.Parse(userInput), computerInput);
+                        Console.WriteLine(message[0]);
+                        Console.WriteLine($"User score: {userScore}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"Computer score: {computerScore}");
+                        Console.WriteLine(' ');
+                        Console.WriteLine("(1) - Paper");
+                        Console.WriteLine("(2) - Rock");
+                        Console.WriteLine("(3) - Scissors");
+                        Console.WriteLine("Make a selection: ");
+                    }
                 }
                 else if (int.Parse(userInput) == 1 && computerInput == Choice.Scissors || int.Parse(userInput) == 2 && computerInput == Choice.Paper || int.Parse(userInput) == 3 && computerInput == Choice.Rock)
                 {
                     computerScore++;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("{0} beats {1}. Computer get's point.", computerInput, (Choice)int.Parse(userInput));
-                    Console.WriteLine(message[1]);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"User score: {userScore}");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Computer score: {computerScore}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(' ');
-                    Console.WriteLine("(1) - Paper");
-                    Console.WriteLine("(2) - Rock");
-                    Console.WriteLine("(3) - Scissors");
-                    Console.WriteLine("Make a selection:");
+                    if (computerScore == 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("{0} beats {1}. Computer scores the last point.", computerInput, (Choice)int.Parse(userInput));
+                        Console.WriteLine(message[4]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("{0} beats {1}. ", computerInput, (Choice)int.Parse(userInput));
+                        Console.WriteLine(message[1]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"User score: {userScore}");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Computer score: {computerScore}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(' ');
+                        Console.WriteLine("(1) - Paper");
+                        Console.WriteLine("(2) - Rock");
+                        Console.WriteLine("(3) - Scissors");
+                        Console.WriteLine("Make a selection:");
+                    }
                 }
                 else if (int.Parse(userInput) == 1 && computerInput == Choice.Paper || int.Parse(userInput) == 2 && computerInput == Choice.Rock || int.Parse(userInput) == 3 && computerInput == Choice.Scissors)
                 {
@@ -129,7 +151,7 @@ namespace PaperRockScissors
                     Console.WriteLine("(3) - Scissors");
                     Console.WriteLine("Make a selection:");
                 }
-
+                
                 if (userScore == 3)
                 {
                     winner = true;
@@ -137,7 +159,8 @@ namespace PaperRockScissors
                 else if (computerScore == 3)
                 {
                     winner = true;
-                }
+                }         
+                
             }while (!winner);
         }
     }

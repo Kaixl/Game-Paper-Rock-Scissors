@@ -6,16 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace PaperRockScissors
 {
     class Program
-    {
-        /*
-        enum Choice
-        {
-            Paper = 1,
-            Rock = 2,
-            Scissors = 3
-        }
-        */
-       
+    {       
         static void Main(string[] args)
         {
             Game gra = new Game();
