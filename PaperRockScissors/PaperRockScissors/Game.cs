@@ -7,6 +7,7 @@ namespace PaperRockScissors
     
     class Game
     {
+        //Lista opcji do wyboru
         enum Choice
         {
             Paper = 1,
@@ -26,6 +27,9 @@ namespace PaperRockScissors
         }
         public void Screen()
         {
+
+            //Startowy ekran wyboru
+
             Console.WriteLine("This is \"Rock, paper, scissors \" game. Let's play!");
             Console.WriteLine("(1) - Paper");
             Console.WriteLine("(2) - Rock");
@@ -36,6 +40,8 @@ namespace PaperRockScissors
         public void GameLogic()
         {
 
+            //Lista wiadomości zwrotnych dla gracza
+
             List<string> message = new List<string>();
             message.Add("User gets point!");
             message.Add("Computer gets point!");
@@ -44,6 +50,8 @@ namespace PaperRockScissors
             message.Add("Computer wins the Game!");
 
             Random rndChoice = new Random();
+
+            //Pętla wykonująca główną logike gry
 
             do
             {
